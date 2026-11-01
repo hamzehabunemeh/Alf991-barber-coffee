@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>alf991 Barber & Coffee</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="media/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Jost:wght@300;400;500;600&family=Reem+Kufi:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap">
+<style>
+/* Concept: a street-front with two doors. Barber side lit by pole stripes, coffee side by marquee bulbs, framed like the gold picture frames on the shop wall. */
+:root{
+  --ink:#0e0b09; --coal:#17120f; --panel:#1d1713; --line:#34291f;
+  --bronze:#b38a50; --gold:#d9b673; --bulb:#ffc35a; --ivory:#f2e8d5; --mute:#a99a82;
+  --brick:#a64f2e; --olive:#3a4634; --pole-red:#b3342f; --pole-blue:#274a82;
+  --f-display:'Abril Fatface','Times New Roman',serif;
+  --f-body:'Jost','Helvetica Neue',Arial,sans-serif;
+  --gutter:max(16px,env(safe-area-inset-left,0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--ivory);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+html[lang=ar] body{font-family:'Tajawal','Jost',sans-serif;font-size:18px}
+html[lang=ar]{--f-display:'Reem Kufi','Abril Fatface',serif}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--bulb);outline-offset:3px}
+.wrap{max-width:1180px;margin-inline:auto}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3{font-weight:700;line-height:1.3}
+p{margin:0}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500}
+html[lang=ar] .eyebrow{letter-spacing:0;font-size:.95rem}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));
+  background:rgba(14,11,9,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:50;background:#0e0b09}
+.top .wrap{display:flex;align-items:center;gap:14px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:1.25rem;letter-spacing:.02em;white-space:nowrap}
+.brand img{width:40px;height:40px;border-radius:50%}
+html[lang=ar] .brand{font-size:1.3rem;font-weight:700}
+nav{margin-inline-start:auto;display:flex;gap:4px;align-items:center}
+nav a{padding:8px 12px;border-radius:99px;font-size:.92rem;color:var(--mute);transition:.2s}
+nav a:hover{color:var(--ivory)}
+nav a[aria-current=page]{color:var(--ink);background:var(--gold)}
+.lang{border:1px solid var(--bronze);background:none;border-radius:99px;padding:6px 14px;cursor:pointer;color:var(--gold);font-size:.9rem;white-space:nowrap}
+.lang:hover{background:var(--bronze);color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:99px;font-weight:500;border:1px solid var(--gold);cursor:pointer;transition:.2s;font-size:1rem}
+.btn.solid{background:var(--gold);color:var(--ink)}
+.btn.solid:hover{background:var(--bulb)}
+.btn.ghost{background:transparent;color:var(--gold)}
+.btn.ghost:hover{background:rgba(217,182,115,.12)}
+.top .btn{padding:8px 18px;font-size:.9rem}
+
+/* pages */
+.page{display:none}
+.page.on{display:block;animation:pageIn .6s ease both}
+@keyframes pageIn{from{opacity:.0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* hero (home) */
+.hero{position:relative;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));
+  background:linear-gradient(180deg,rgba(14,11,9,.2) 0%,rgba(14,11,9,.2) 30%,rgba(14,11,9,.9) 62%,rgba(14,11,9,.97) 100%),url(media/hero.jpg) center top/cover;
+  padding-block:clamp(190px,30vw,360px) 56px;text-align:center}
+.hero .logo{width:min(250px,58vw);margin:0 auto 22px;border-radius:50%;box-shadow:0 0 0 1px rgba(217,182,115,.4),0 18px 60px rgba(0,0,0,.6),0 0 90px rgba(255,195,90,.18);animation:coin 1.2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes coin{from{opacity:.0;transform:scale(.86) rotate(-8deg)}to{opacity:1;transform:none}}
+.hero h1{font-size:clamp(2.6rem,8vw,5.6rem);margin:12px 0 16px}
+.hero p.lead{max-width:34rem;margin:0 auto 26px;color:#e4d7bf;font-size:1.12rem}
+.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.status{display:inline-flex;align-items:center;gap:9px;margin-top:26px;padding:7px 16px;border-radius:99px;background:rgba(14,11,9,.7);border:1px solid var(--line);font-size:.9rem;color:var(--ivory)}
+.dot{width:9px;height:9px;border-radius:50%;background:#6b6b6b}
+.status.open .dot{background:#59d37a;box-shadow:0 0 0 0 rgba(89,211,122,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(89,211,122,0)}100%{box-shadow:0 0 0 0 rgba(89,211,122,0)}}
+
+/* barber pole divider */
+.pole{height:10px;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));
+  background:repeating-linear-gradient(-45deg,var(--ivory) 0 10px,var(--pole-red) 10px 20px,var(--ivory) 20px 30px,var(--pole-blue) 30px 40px);background-size:56.57px 56.57px;animation:slide 3s linear infinite}
+@keyframes slide{to{background-position:56.57px 0}}
+
+/* two doors */
+.doors{display:flex;gap:0;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));min-height:min(70vh,560px)}
+.door{position:relative;flex:1;display:flex;align-items:flex-end;padding:32px max(16px,env(safe-area-inset-left,0px));overflow:hidden;transition:flex .6s cubic-bezier(.2,.8,.2,1);isolation:isolate}
+.door::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--bg) center/cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.door::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,11,9,.1),rgba(14,11,9,.88))}
+.door:hover,.door:focus-visible{flex:1.5}
+.door:hover::before{transform:scale(1.06)}
+.door .t{font-family:var(--f-display);font-size:clamp(2rem,5vw,3.4rem);line-height:1.1}
+html[lang=ar] .door .t{font-weight:700}
+.door p{color:#e0d3bb;max-width:22rem;margin-top:6px}
+.door .go{display:inline-block;margin-top:14px;color:var(--gold);font-weight:500;letter-spacing:.04em}
+.door .go::after{content:" →"}
+html[dir=rtl] .door .go::after{content:" ←"}
+.door.barber{--bg:url(media/barber-chairs.jpg)}
+.door.coffee{--bg:url(media/coffee-bar.jpg)}
+.door.barber .t{color:var(--ivory);text-shadow:0 2px 14px rgba(0,0,0,.7);padding-bottom:10px;position:relative}
+.door.barber .t::after{content:"";position:absolute;inset-inline:0;bottom:0;height:7px;background:repeating-linear-gradient(-45deg,var(--ivory) 0 7px,var(--pole-red) 7px 14px,var(--ivory) 14px 21px,var(--pole-blue) 21px 28px);background-size:39.6px 39.6px;animation:slide 3s linear infinite;max-width:9em}
+@keyframes slideT{to{background-position:.735em 0}}
+.door.coffee .t{color:var(--bulb);text-shadow:0 0 18px rgba(255,170,40,.75),0 0 2px #fff0c8}
+@media (max-width:760px){.doors{flex-direction:column}.door{min-height:300px}.door:hover{flex:1}}
+
+/* sections */
+section{padding-block:84px}
+.head{margin-bottom:34px}
+.head h2{font-size:clamp(2rem,5vw,3.2rem);margin-top:8px}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.split>*{min-width:0}
+.about p{color:#dccfb6;font-size:1.08rem;margin-top:18px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{border:1px solid var(--line);background:var(--panel);padding:7px 16px;border-radius:99px;font-size:.9rem;color:var(--gold)}
+/* gold picture frame video */
+.frame{justify-self:center;width:min(100%,360px);padding:14px;background:linear-gradient(135deg,#e6c585,#8a6630 45%,#d9b673 60%,#6f4f22);border-radius:6px;box-shadow:0 30px 70px rgba(0,0,0,.65)}
+.frame .mat{background:#efe6d3;padding:12px;border-radius:2px}
+.frame .vid{position:relative;aspect-ratio:9/16;background:#000;overflow:hidden}
+.frame video{width:100%;height:100%;object-fit:cover}
+.play{position:absolute;inset:0;display:grid;place-items:center;border:0;cursor:pointer;background:linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.45))}
+.play span{width:78px;height:78px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-size:1.7rem;padding-inline-start:5px;box-shadow:0 0 0 8px rgba(217,182,115,.25)}
+.play.hide{display:none}
+@media (max-width:860px){.split{grid-template-columns:1fr;gap:40px}}
+
+/* gallery */
+.gal{columns:3 260px;column-gap:14px}
+.gal button{display:block;width:100%;margin:0 0 14px;padding:0;border:0;background:none;cursor:zoom-in;break-inside:avoid;overflow:hidden;border-radius:4px;border:1px solid var(--line)}
+.gal img{width:100%;height:auto;transition:transform .8s ease,filter .4s}
+.gal button:hover img{transform:scale(1.04);filter:brightness(1.1)}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(8,6,4,.94);display:none;place-items:center;padding:20px;cursor:zoom-out}
+.lb.on{display:grid}
+.lb img{max-height:92vh;max-width:96vw;object-fit:contain;border:6px solid #b8914f;border-radius:2px}
+
+/* reviews */
+.rev{background:linear-gradient(135deg,var(--panel),#241b14);border:1px solid var(--line);border-radius:10px;padding:44px 28px;text-align:center}
+.stars{color:var(--bulb);letter-spacing:.2em;font-size:1.6rem}
+.rev h3{font-size:clamp(1.6rem,4vw,2.4rem);margin:12px 0}
+.rev p{color:var(--mute);max-width:36rem;margin:0 auto 24px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:24px 0;text-align:start}
+.rcard{background:var(--coal);border:1px solid var(--line);padding:20px;border-radius:8px}
+
+/* visit */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.visit>*{min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px}
+.card h3{font-size:1.5rem;margin-bottom:16px}
+.hours{width:100%;border-collapse:collapse}
+.hours td{padding:9px 0;border-bottom:1px dotted var(--line)}
+.hours td:last-child{text-align:end;color:var(--mute);font-variant-numeric:tabular-nums}
+.hours tr.today td{color:var(--bulb);font-weight:600}
+.row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:12px 0;border-bottom:1px dotted var(--line)}
+.row:last-child{border:0}
+.row .k{color:var(--mute);font-size:.88rem;flex-basis:100%}
+.row .v{font-size:1.1rem;font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:plaintext;overflow-wrap:anywhere}
+.mini{display:flex;gap:8px;flex-wrap:wrap}
+.mini a,.mini button{border:1px solid var(--bronze);background:none;border-radius:99px;padding:5px 14px;font-size:.85rem;color:var(--gold);cursor:pointer}
+.mini a:hover,.mini button:hover{background:var(--bronze);color:var(--ink)}
+@media (max-width:860px){.visit{grid-template-columns:1fr}}
+
+/* inner page heroes */
+.ph{position:relative;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:90px max(16px,env(safe-area-inset-left,0px)) 70px;text-align:center;isolation:isolate;overflow:hidden}
+.ph::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--img) center/cover}
+.ph::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,11,9,.45),rgba(14,11,9,.95))}
+.ph .big{font-family:var(--f-display);font-size:clamp(4rem,17vw,11rem);line-height:1;margin:10px 0 6px;letter-spacing:.02em}
+html[lang=ar] .ph .big{font-weight:700;line-height:1.25;font-size:clamp(3.6rem,15vw,9rem)}
+.ph p.sub{max-width:34rem;margin:0 auto;color:#e4d7bf;font-size:1.12rem}
+.ph.barber{--img:url(media/barber-hall.jpg)}
+.ph.coffee{--img:url(media/coffee-front.jpg)}
+.ph.coffee::before{background-position:center 30%}
+.pole-t{background:repeating-linear-gradient(-45deg,var(--ivory) 0 .12em,var(--pole-red) .12em .24em,var(--ivory) .24em .36em,var(--pole-blue) .36em .48em);background-size:.68em .68em;-webkit-background-clip:text;background-clip:text;color:transparent;animation:slideT2 5s linear infinite;filter:drop-shadow(0 4px 14px rgba(0,0,0,.7))}
+@keyframes slideT2{to{background-position:.68em 0}}
+/* marquee-bulb letters */
+.bulb-t{color:transparent;background:radial-gradient(circle at 50% 50%,#fff6d6 0 22%,#ffc35a 36%,rgba(255,150,30,.0) 58%) 0 0/.085em .085em;-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 .1em rgba(255,160,30,.75));animation:flick 5s infinite}
+html[lang=ar] .bulb-t{background-size:.07em .07em}
+@keyframes flick{0%,92%,100%{opacity:1}94%{opacity:.7}96%{opacity:1}97%{opacity:.8}}
+
+/* services menu */
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.menu>*{min-width:0}
+.cat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px 26px}
+.cat.wide{grid-column:1/-1}
+.cat h3{font-size:1.7rem;color:var(--gold);padding-bottom:12px;margin-bottom:6px;border-bottom:2px solid var(--bronze)}
+.item{padding:14px 0;border-bottom:1px dotted var(--line)}
+.item:last-child{border:0}
+.item .l{display:flex;align-items:baseline;gap:10px}
+.item .n{font-weight:500;font-size:1.08rem}
+.item .lead{flex:1;border-bottom:1px dotted var(--mute);transform:translateY(-4px);min-width:16px}
+.item .p{font-family:var(--f-display);color:var(--bulb);font-size:1.25rem;white-space:nowrap;font-variant-numeric:tabular-nums}
+html[lang=ar] .item .p{font-weight:700}
+.item .m{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.88rem;color:var(--mute);margin-top:2px}
+.tag{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;background:var(--brick);color:#fff;padding:2px 9px;border-radius:99px;font-weight:600;align-self:center}
+html[lang=ar] .tag{letter-spacing:0;font-size:.78rem}
+.save{color:#7fd699}
+.note{margin-top:26px;color:var(--mute);font-size:.92rem;text-align:center}
+@media (max-width:860px){.menu{grid-template-columns:1fr}}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.pair img{width:100%;height:100%;min-height:240px;object-fit:cover;border:1px solid var(--line);border-radius:4px}
+.cta-band{text-align:center;padding-block:70px;background:radial-gradient(ellipse at center,rgba(179,138,80,.18),transparent 70%)}
+.cta-band h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:22px}
+
+footer{border-top:1px solid var(--line);padding-block:36px 100px;color:var(--mute);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between}
+footer a:hover{color:var(--gold)}
+.mbar{display:none}
+@media (max-width:640px){
+  nav a{padding:8px 9px;font-size:.85rem}
+  .top .btn{display:none}
+  .brand span{display:none}
+  .mbar{display:flex;gap:10px;position:fixed;bottom:0;inset-inline:0;z-index:45;padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:rgba(14,11,9,.94);border-top:1px solid var(--line)}
+  .mbar .btn{flex:1;padding:12px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="#home"><img src="media/logo.png" alt="alf991 logo" width="40" height="40"><span data-t="brand"></span></a>
+  <nav aria-label="Main">
+    <a href="#home" data-nav="home" data-t="nav_home"></a>
+    <a href="#barber" data-nav="barber" data-t="nav_barber"></a>
+    <a href="#coffee" data-nav="coffee" data-t="nav_coffee"></a>
+  </nav>
+  <a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a>
+  <button class="lang" id="langBtn" type="button" aria-label="Language"></button>
+</div></header>
+
+<main>
+<!-- HOME -->
+<div class="page" id="p-home">
+  <div class="hero">
+    <img class="logo" src="media/logo.png" alt="alf991 barber &amp; coffee" width="250" height="250">
+    <div class="eyebrow" data-t="h_eyebrow"></div>
+    <h1 data-t="h_title"></h1>
+    <p class="lead" data-t="h_lead"></p>
+    <div class="cta">
+      <a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a>
+      <a class="btn ghost" href="#home" data-scroll="visit" data-t="visit_us"></a>
+    </div>
+    <div class="status" id="status"><span class="dot"></span><span id="statusTxt"></span></div>
+  </div>
+  <div class="pole"></div>
+  <div class="doors">
+    <a class="door barber" href="#barber"><div><div class="t" data-t="d_barber"></div><p data-t="d_barber_s"></p><span class="go" data-t="enter"></span></div></a>
+    <a class="door coffee" href="#coffee"><div><div class="t" data-t="d_coffee"></div><p data-t="d_coffee_s"></p><span class="go" data-t="enter"></span></div></a>
+  </div>
+  <div class="pole"></div>
+
+  <div class="wrap">
+    <section>
+      <div class="split">
+        <div class="about">
+          <div class="eyebrow" data-t="a_eyebrow"></div>
+          <h2 data-t="a_title" style="font-size:clamp(2rem,5vw,3.2rem);margin-top:8px"></h2>
+          <p data-t="a_text"></p>
+          <div class="chips" id="chips"></div>
+        </div>
+        <div class="frame"><div class="mat"><div class="vid">
+          <video id="vid" src="media/tour.mp4" poster="media/poster.jpg" preload="metadata" playsinline controls></video>
+          <button class="play" id="play" type="button" aria-label="Play video"><span>▶</span></button>
+        </div></div></div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="head"><div class="eyebrow" data-t="g_eyebrow"></div><h2 data-t="g_title"></h2></div>
+      <div class="gal" id="gal"></div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="rev" id="rev"></div>
+    </section>
+
+    <section id="visit" style="padding-top:0">
+      <div class="head"><div class="eyebrow" data-t="v_eyebrow"></div><h2 data-t="v_title"></h2></div>
+      <div class="visit">
+        <div class="card"><h3 data-t="v_hours"></h3><table class="hours" id="hours"></table></div>
+        <div class="card"><h3 data-t="v_contact"></h3><div id="contact"></div></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- BARBER -->
+<div class="page" id="p-barber">
+  <div class="ph barber">
+    <div class="eyebrow" data-t="b_eyebrow"></div>
+    <div class="big pole-t" data-t="b_big"></div>
+    <p class="sub" data-t="b_sub"></p>
+    <div style="margin-top:26px"><a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a></div>
+  </div>
+  <div class="pole"></div>
+  <div class="wrap">
+    <section style="padding-bottom:40px">
+      <div class="head"><div class="eyebrow" data-t="s_eyebrow"></div><h2 data-t="s_title"></h2></div>
+      <div class="menu" id="menu"></div>
+      <p class="note" data-t="s_note"></p>
+    </section>
+    <section style="padding-top:20px"><div class="pair">
+      <img src="media/barber-shelves.jpg" alt="Barber shop shelves and mirrors" loading="lazy">
+      <img src="media/barber-chairs.jpg" alt="Classic barber chairs" loading="lazy">
+    </div></section>
+  </div>
+  <div class="cta-band"><h2 data-t="b_cta"></h2><a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a></div>
+</div>
+
+<!-- COFFEE -->
+<div class="page" id="p-coffee">
+  <div class="ph coffee">
+    <div class="eyebrow" data-t="c_eyebrow"></div>
+    <div class="big bulb-t" data-t="c_big"></div>
+    <p class="sub" data-t="c_sub"></p>
+  </div>
+  <div class="pole"></div>
+  <div class="wrap">
+    <section style="padding-bottom:40px">
+      <div class="head"><div class="eyebrow" data-t="m_eyebrow"></div><h2 data-t="m_title"></h2></div>
+      <div class="menu" id="cmenu"></div>
+      <p class="note" data-t="m_note"></p>
+    </section>
+    <section style="padding-top:20px"><div class="pair">
+      <img src="media/coffee-barista.jpg" alt="Barista pouring an iced drink" loading="lazy">
+      <img src="media/coffee-bar.jpg" alt="The coffee bar" loading="lazy">
+    </div></section>
+  </div>
+  <div class="cta-band"><h2 data-t="c_cta"></h2><a class="btn ghost" href="#home" data-scroll="visit" data-t="visit_us"></a></div>
+</div>
+</main>
+
+<footer><div class="wrap">
+  <span id="foot"></span>
+  <span><a href="https://www.instagram.com/alf991.jo" target="_blank" rel="noopener">Instagram @alf991.jo</a> · <a href="https://maps.app.goo.gl/CrmdUJqhNibtgRAT9?g_st=ic" target="_blank" rel="noopener" data-t="map"></a></span>
+</div></footer>
+
+<div class="mbar">
+  <a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a>
+  <a class="btn ghost" href="https://wa.me/962775851991" target="_blank" rel="noopener" data-t="wa"></a>
+</div>
+<div class="lb" id="lb" role="dialog" aria-label="Photo"><img id="lbImg" alt=""></div>
+
+<script>
+const FRESHA='https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6';
+const MAPS='https://maps.app.goo.gl/CrmdUJqhNibtgRAT9?g_st=ic';
+const IG='https://www.instagram.com/alf991.jo';
+/* Paste real Google data here when available: {rating:4.9,count:120,items:[{name:'',text:'',stars:5}]} */
+const REVIEWS={rating:null,count:null,items:[]};
+
+const T={
+en:{brand:'alf991',nav_home:'Home',nav_barber:'Barber',nav_coffee:'Coffee',book:'Book now',wa:'WhatsApp',visit_us:'Visit us',enter:'Enter',map:'Google Maps',
+ h_eyebrow:'Barber & Coffee · Amman',h_title:'Fresh cut. Fresh brew.',h_lead:'Old-school barbering and a proper coffee bar under one roof on Abdallah Al-Hammoud St.',
+ d_barber:'The Barber',d_barber_s:'Cuts, beard care, hot oil bath, colour and facials.',d_coffee:'The Coffee Bar',d_coffee_s:'Espresso, matcha and iced drinks, made at the bar.',
+ a_eyebrow:'About alf991',a_title:'Step inside',
+ a_text:'alf991 barber & coffee brings professional hair styling together with a relaxed café atmosphere, a natural stop for anyone who loves grooming and good coffee. Our professionals offer classic old-school haircuts by expert hands, hot oil baths, hair colouring and styling, so every guest gets a personal, one-of-a-kind experience. The place is friendly to families and children, with facilities that make your visit easy and comfortable.',
+ chips:['Family & kids friendly','Old-school cuts','Hot oil bath','Coffee bar','Online booking'],
+ g_eyebrow:'The place',g_title:'Brick, brass and warm light',
+ r_title:'Loved by our guests?',r_text:'Read what guests say about alf991 and leave your own review on Google.',r_btn:'See Google reviews',r_count:'reviews on Google',
+ v_eyebrow:'Find us',v_title:'Visit alf991',v_hours:'Opening hours',v_contact:'Contact',
+ k_addr:'Address',v_addr:'Abdallah Al-Hammoud St., Amman',k_wa:'Call or WhatsApp',k_call:'Call',k_mail:'Email',k_ig:'Instagram',k_book:'Online booking',
+ open_map:'Open map',call:'Call',whatsapp:'WhatsApp',copy:'Copy',copied:'Copied',open_ig:'Open',book_fresha:'Book on Fresha',
+ open_now:'Open now · until',closed_now:'Closed · opens at',
+ days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+ b_eyebrow:'Old-school barbering',b_big:'BARBER',b_sub:'Classic cuts, clean beards and care that takes its time.',
+ s_eyebrow:'Services & prices',s_title:'The menu',s_note:'Prices in Jordanian dinar, with times as listed on our booking page.',b_cta:'Take a seat.',
+ pop:'Popular',save:'Save',
+ c_eyebrow:'The coffee bar',c_big:'COFFEE',c_sub:'Espresso, matcha and iced drinks, made at the bar.',
+ m_eyebrow:'Drinks',m_title:'Coffee menu',m_note:'Menu preview. Our full menu is coming soon.',c_cta:'Come in for a cup.',
+ foot:'© 2026 alf991 barber & coffee · Amman, Jordan'},
+ar:{brand:'ألف 991',nav_home:'الرئيسية',nav_barber:'الحلاقة',nav_coffee:'القهوة',book:'احجز الآن',wa:'واتساب',visit_us:'زورونا',enter:'ادخل',map:'خرائط جوجل',
+ h_eyebrow:'حلاقة وقهوة · عمّان',h_title:'قصّة جديدة. قهوة طازجة.',h_lead:'حلاقة بروح الزمن الجميل وبار قهوة متكامل تحت سقف واحد في شارع عبدالله الحمود.',
+ d_barber:'الحلاقة',d_barber_s:'قص شعر، عناية باللحية، حمام زيت، صبغ وعناية بالبشرة.',d_coffee:'بار القهوة',d_coffee_s:'إسبريسو وماتشا ومشروبات باردة تُحضَّر على البار.',
+ a_eyebrow:'عن ألف 991',a_title:'تفضّل بالدخول',
+ a_text:'تجمع ألف 991 باربر آند كوفي بين لمسة الاحتراف في تصفيف الشعر وأجواء مقهى مريحة، مما يجعلها وجهة مثالية لعشاق الجمال والقهوة. يقدّم المحترفون خدمات متنوعة تشمل حلاقة شعر من العصر القديم على أيادي محترفين، وحمام الزيت، وصبغ الشعر، وتصفيفه، لضمان حصول كل عميل على تجربة مخصصة وفريدة. المكان صديق للعائلات والأطفال، ويتميز بمرافق تسهّل الزيارة، مما يضمن لك تجربة مريحة وممتعة.',
+ chips:['صديق للعائلات والأطفال','حلاقة على الطريقة القديمة','حمام زيت','بار قهوة','حجز أونلاين'],
+ g_eyebrow:'المكان',g_title:'طوب ونحاس وضوء دافئ',
+ r_title:'أعجبتك تجربتك؟',r_text:'اقرأ آراء ضيوفنا عن ألف 991 على جوجل، وشاركنا رأيك.',r_btn:'شاهد التقييمات على جوجل',r_count:'تقييم على جوجل',
+ v_eyebrow:'اعثر علينا',v_title:'زوروا ألف 991',v_hours:'ساعات العمل',v_contact:'التواصل',
+ k_addr:'العنوان',v_addr:'شارع عبدالله الحمود، عمّان',k_wa:'اتصال أو واتساب',k_call:'اتصال',k_mail:'البريد الإلكتروني',k_ig:'إنستغرام',k_book:'الحجز أونلاين',
+ open_map:'افتح الخريطة',call:'اتصال',whatsapp:'واتساب',copy:'نسخ',copied:'تم النسخ',open_ig:'فتح',book_fresha:'احجز عبر Fresha',
+ open_now:'مفتوح الآن · حتى',closed_now:'مغلق · نفتح الساعة',
+ days:['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],
+ b_eyebrow:'حلاقة على الطريقة القديمة',b_big:'الحلاقة',b_sub:'قصّات كلاسيكية ولحى مرتبة وعناية تأخذ وقتها.',
+ s_eyebrow:'الخدمات والأسعار',s_title:'قائمة الخدمات',s_note:'الأسعار بالدينار الأردني، والأوقات كما هي في صفحة الحجز.',b_cta:'تفضّل بالجلوس.',
+ pop:'الأكثر طلباً',save:'وفّر',
+ c_eyebrow:'بار القهوة',c_big:'القهوة',c_sub:'إسبريسو وماتشا ومشروبات باردة تُحضَّر على البار.',
+ m_eyebrow:'المشروبات',m_title:'قائمة القهوة',m_note:'نموذج أولي للقائمة. القائمة الكاملة قريباً.',c_cta:'تعال لفنجان قهوة.',
+ foot:'© 2026 ألف 991 باربر آند كوفي · عمّان، الأردن'}
+};
+
+/* Service data: [en, ar, minutes, price, popular, descEn, descAr] */
+const CATS=[
+ {en:'Signature & packages',ar:'الباقات',wide:true,items:[
+  ['ALF991 Signature','ALF991 Signature',65,20,1,'Haircut, beard shave and hair style in one visit.','قص شعر وحلاقة لحية وتصفيف في زيارة واحدة.',22],
+  ['Student Package','باكيج الطالب',45,10,0,'',''],
+  ['Campus Package','باكيج الجامعة',60,16,0,'',''],
+  ['Vintage Groom Package','باقة العريس',110,50,0,'The full groom experience.','تجربة العناية الكاملة بالعريس.']]},
+ {en:'Hair & styling',ar:'الشعر والتصفيف',items:[
+  ['Haircut','قص شعر',30,10,1,'A precise cut by a professional hand.','قصّة دقيقة بيد محترفة.'],
+  ['Buzzcut','حلاقة زيرو',15,8,1,'A clean all-over clipper cut.','حلاقة زيرو نظيفة وسريعة.'],
+  ['Kids’ Haircut','قص شعر الأطفال',20,8,1,'A relaxed, friendly cut for little ones.','قصّة مريحة للأطفال في أجواء ودودة.'],
+  ['Hair Style','تصفيف الشعر',15,6,1,'Styled your way, modern or classic.','تصفيف عصري أو كلاسيكي.'],
+  ['Hair Coloring','صبغ الشعر',30,20,0,'A new shade that suits you.','لون جديد يعكس شخصيتك.'],
+  ['Hair Bleaching','تفتيح الشعر',110,40,0,'Lift your colour for a bolder look.','تفتيح الشعر للحصول على لون مميز.'],
+  ['Treatment Blowout (Keratin)','كيراتين',30,30,0,'Keratin care for smooth, shiny, manageable hair.','علاج الكيراتين لشعر ناعم ولامع وسهل التصفيف.'],
+  ['Hot Oil Treatment','حمام زيت للشعر',20,10,0,'A soothing oil bath for scalp and hair.','حمام زيت مهدئ يغذي فروة الرأس والشعر.']]},
+ {en:'Beard',ar:'اللحية',items:[
+  ['Beard Shave','حلاقة اللحية',20,6,1,'A clean, sharp, tidy beard shave.','حلاقة لحية مرتبة وأنيقة.'],
+  ['Beard Colouring','صبغ اللحية',20,8,0,'Fresh colour for your beard.','لون جديد للحيتك.']]},
+ {en:'Hair removal',ar:'إزالة الشعر',items:[
+  ['Ear Waxing','إزالة شعر الأذن بالشمع',5,2,0,'',''],
+  ['Nose Waxing','إزالة شعر الأنف بالشمع',5,2,0,'',''],
+  ['Face Threading','إزالة شعر الوجه بالخيط',5,2,0,'',''],
+  ['Eyebrow Threading','تنظيف الحواجب بالخيط',5,2,0,'',''],
+  ['Face Waxing','إزالة شعر الوجه بالشمع',5,4,0,'','']]},
+ {en:'Facial',ar:'العناية بالبشرة',items:[
+  ['Hydrafacial','العناية الفائقة بالبشرة',60,30,0,'Advanced facial for fresher, cleaner skin.','علاج متقدم لبشرة أنقى وأكثر نضارة.'],
+  ['Express Classic Facial','تنظيف بشرة كلاسيكي سريع',20,10,0,'A quick classic cleanse.','تنظيف كلاسيكي سريع.'],
+  ['Full Deep Cleaning Facial','تنظيف عميق كامل للبشرة',45,20,0,'A deep cleanse that refreshes your skin.','تنظيف عميق يجدد مظهر البشرة.']]}
+];
+const COFFEE=[
+ {en:'Espresso & hot',ar:'القهوة الساخنة',items:[['Espresso','إسبريسو'],['Americano','أمريكانو'],['Cappuccino','كابتشينو'],['Latte','لاتيه'],['Flat White','فلات وايت']]},
+ {en:'Iced',ar:'المشروبات الباردة',items:[['Iced Latte','آيس لاتيه'],['Iced Americano','آيس أمريكانو']]},
+ {en:'Matcha',ar:'ماتشا',wide:true,items:[['Matcha Latte','ماتشا لاتيه'],['Iced Matcha','آيس ماتشا'],['Strawberry Matcha','ماتشا بالفراولة'],['Mango Matcha','ماتشا بالمانجو'],['Vanilla Matcha','ماتشا بالفانيلا']]}
+];
+const HOURS=[[8,23],[8,23.5],[8,23.5],[8,23],[8,23],[8,23],[8,23]]; // Sun..Sat
+const PHOTOS=['hero','barber-hall','coffee-front','barber-shelves','coffee-barista','barber-chairs','coffee-bar'];
+
+let lang='en';
+try{const s=localStorage.getItem('alf-lang');if(s==='ar'||s==='en')lang=s}catch(e){}
+const $=s=>document.querySelector(s);
+const t=k=>T[lang][k];
+
+function hm(h,l){const H=Math.floor(h),M=Math.round((h-H)*60);const ap=H>=12?(l==='ar'?'م':'PM'):(l==='ar'?'ص':'AM');const h12=((H+11)%12)+1;return h12+':'+String(M).padStart(2,'0')+' '+ap}
+function dur(m){const h=Math.floor(m/60),r=m%60;
+  if(lang==='ar'){if(!h)return m+' د';return (h===1?'ساعة':h+' ساعات')+(r?' و'+r+' د':'')}
+  return (h?h+' hr':'')+(h&&r?' ':'')+(r?r+' min':'')}
+function price(p){return lang==='ar'?p+' د.أ':'JOD '+p}
+function amman(){const f=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Amman',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+  const g=k=>f.find(p=>p.type===k).value;const wd=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(g('weekday'));return {wd,h:(+g('hour')%24)+(+g('minute'))/60}}
+
+function renderStatus(){const {wd,h}=amman();const [o,c]=HOURS[wd];const open=h>=o&&h<c;
+  $('#status').classList.toggle('open',open);
+  $('#statusTxt').textContent=open?t('open_now')+' '+hm(c,lang):t('closed_now')+' '+hm(8,lang)}
+
+function renderHours(){const {wd}=amman();
+  $('#hours').innerHTML=HOURS.map((x,i)=>`<tr class="${i===wd?'today':''}"><td>${t('days')[i]}</td><td>${hm(x[0],lang)} – ${hm(x[1],lang)}</td></tr>`).join('')}
+
+function renderContact(){
+  const row=(k,v,btns)=>`<div class="row"><span class="k">${k}</span><span class="v">${v}</span><span class="mini">${btns}</span></div>`;
+  const cp=(txt)=>`<button type="button" data-copy="${txt}">${t('copy')}</button>`;
+  $('#contact').innerHTML=
+   row(t('k_addr'),`<span style="direction:inherit">${t('v_addr')}</span>`,`<a href="${MAPS}" target="_blank" rel="noopener">${t('open_map')}</a>`)+
+   row(t('k_wa'),'+962 7 7585 1991',`<a href="https://wa.me/962775851991" target="_blank" rel="noopener">${t('whatsapp')}</a><a href="tel:+962775851991">${t('call')}</a>${cp('+962775851991')}`)+
+   row(t('k_call'),'+962 6 585 1991',`<a href="tel:+96265851991">${t('call')}</a>${cp('+96265851991')}`)+
+   row(t('k_mail'),'Alf991jo@gmail.com',`<a href="mailto:Alf991jo@gmail.com">${t('k_mail')}</a>${cp('Alf991jo@gmail.com')}`)+
+   row(t('k_ig'),'@alf991.jo',`<a href="${IG}" target="_blank" rel="noopener">${t('open_ig')}</a>`)+
+   row(t('k_book'),'Fresha',`<a href="${FRESHA}" target="_blank" rel="noopener">${t('book_fresha')}</a>`);
+  document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{
+    const v=b.dataset.copy,old=b.textContent;
+    try{await navigator.clipboard.writeText(v)}catch(e){const r=document.createRange();const s=b.closest('.row').querySelector('.v');r.selectNodeContents(s);const sel=getSelection();sel.removeAllRanges();sel.addRange(r)}
+    b.textContent=t('copied');setTimeout(()=>b.textContent=old,1400)})}
+
+function renderReviews(){
+  if(REVIEWS.rating){
+    $('#rev').innerHTML=`<div class="stars" aria-hidden="true">★★★★★</div><h3>${REVIEWS.rating} / 5</h3><p>${REVIEWS.count} ${t('r_count')}</p>`+
+      (REVIEWS.items.length?`<div class="rgrid">${REVIEWS.items.map(r=>`<div class="rcard"><div class="stars" style="font-size:1rem">${'★'.repeat(r.stars||5)}</div><p style="margin:8px 0;color:var(--ivory)">${r.text}</p><b>${r.name}</b></div>`).join('')}</div>`:'')+
+      `<a class="btn solid" href="${MAPS}" target="_blank" rel="noopener">${t('r_btn')}</a>`;
+  }else{
+    $('#rev').innerHTML=`<div class="stars" aria-hidden="true">★★★★★</div><h3>${t('r_title')}</h3><p>${t('r_text')}</p><a class="btn solid" href="${MAPS}" target="_blank" rel="noopener">${t('r_btn')}</a>`}}
+
+function renderMenu(){
+  $('#menu').innerHTML=CATS.map(c=>`<div class="cat ${c.wide?'wide':''}"><h3>${lang==='ar'?c.ar:c.en}</h3>`+c.items.map(i=>
+    `<div class="item"><div class="l"><span class="n">${lang==='ar'?i[1]:i[0]}</span>${i[4]?`<span class="tag">${t('pop')}</span>`:''}<span class="lead"></span><span class="p">${price(i[3])}</span></div>
+     <div class="m"><span>${dur(i[2])}</span>${i[7]?`<span class="save">${t('save')} ${price(i[7]-i[3])}</span>`:''}</div>
+     ${(lang==='ar'?i[6]:i[5])?`<div class="m" style="margin-top:4px">${lang==='ar'?i[6]:i[5]}</div>`:''}</div>`).join('')+`</div>`).join('');
+  $('#cmenu').innerHTML=COFFEE.map(c=>`<div class="cat ${c.wide?'wide':''}"><h3>${lang==='ar'?c.ar:c.en}</h3>`+c.items.map(i=>
+    `<div class="item"><div class="l"><span class="n">${lang==='ar'?i[1]:i[0]}</span></div></div>`).join('')+`</div>`).join('')}
+
+function applyLang(){
+  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t(e.dataset.t));
+  $('#chips').innerHTML=t('chips').map(c=>`<span class="chip">${c}</span>`).join('');
+  $('#foot').textContent=t('foot');
+  $('#langBtn').textContent=lang==='ar'?'EN':'العربية';
+  renderStatus();renderHours();renderContact();renderReviews();renderMenu()}
+
+function setLang(l){lang=l;try{localStorage.setItem('alf-lang',l)}catch(e){}applyLang()}
+$('#langBtn').onclick=()=>setLang(lang==='ar'?'en':'ar');
+
+/* routing between the three pages */
+let pending=null;
+function route(){const h=location.hash.slice(1);const p=['barber','coffee'].includes(h)?h:'home';
+  document.querySelectorAll('.page').forEach(e=>e.classList.toggle('on',e.id==='p-'+p));
+  document.querySelectorAll('[data-nav]').forEach(a=>a.toggleAttribute('aria-current',a.dataset.nav===p)||0);
+  document.querySelectorAll('[data-nav]').forEach(a=>a.dataset.nav===p?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
+  if(pending){const id=pending;pending=null;setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'})},60)}else window.scrollTo(0,0)}
+window.addEventListener('hashchange',route);
+document.addEventListener('click',e=>{const a=e.target.closest('[data-scroll]');if(!a)return;e.preventDefault();pending=a.dataset.scroll;
+  if(location.hash==='#home'||location.hash===''){route()}else location.hash='home'});
+
+/* gallery + lightbox */
+$('#gal').innerHTML=PHOTOS.map(p=>`<button type="button" data-src="media/${p}.jpg"><img src="media/${p}.jpg" alt="alf991" loading="lazy"></button>`).join('');
+$('#gal').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('#lbImg').src=b.dataset.src;$('#lb').classList.add('on')});
+$('#lb').onclick=()=>$('#lb').classList.remove('on');
+addEventListener('keydown',e=>{if(e.key==='Escape')$('#lb').classList.remove('on')});
+
+/* video */
+const v=$('#vid'),pb=$('#play');
+pb.onclick=()=>{pb.classList.add('hide');v.play().catch(()=>{})};
+v.addEventListener('pause',()=>{if(v.currentTime===0||v.ended)pb.classList.remove('hide')});
+
+applyLang();route();setInterval(renderStatus,60000);
+</script>
+
+</body>
+</html>
