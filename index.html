@@ -4,210 +4,208 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>alf991 Barber & Coffee</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="alf991 barber & coffee, Amman. Old-school barbering and a coffee bar under one roof.">
+<meta name="theme-color" content="#0a0806">
 <link rel="icon" href="media/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Jost:wght@300;400;500;600&family=Reem+Kufi:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Tajawal:wght@300;400;500;700&display=swap">
 <style>
-/* Concept: a street-front with two doors. Barber side lit by pole stripes, coffee side by marquee bulbs, framed like the gold picture frames on the shop wall. */
+/* Direction: black and champagne gold, hairline frames, serif display. No colour accents beyond gold. */
 :root{
-  --ink:#0e0b09; --coal:#17120f; --panel:#1d1713; --line:#34291f;
-  --bronze:#b38a50; --gold:#d9b673; --bulb:#ffc35a; --ivory:#f2e8d5; --mute:#a99a82;
-  --brick:#a64f2e; --olive:#3a4634; --pole-red:#b3342f; --pole-blue:#274a82;
-  --f-display:'Abril Fatface','Times New Roman',serif;
+  --ink:#0a0806; --coal:#100c09; --panel:#140f0b; --line:rgba(214,179,112,.24); --line-soft:rgba(214,179,112,.12);
+  --gold:#d6b370; --gold-hi:#f3dfa8; --gold-lo:#9c7a3e; --ivory:#f4ecdc; --mute:#a99a7e;
+  --f-display:'Cormorant Garamond','Times New Roman',serif;
   --f-body:'Jost','Helvetica Neue',Arial,sans-serif;
-  --gutter:max(16px,env(safe-area-inset-left,0px));
+  --foil:linear-gradient(180deg,#f8e8bd 0%,#d9b673 48%,#a2793a 100%);
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--ink);color:var(--ivory);font-family:var(--f-body);font-size:17px;line-height:1.6;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{margin:0;background:var(--ink);color:var(--ivory);font-family:var(--f-body);font-weight:300;font-size:17px;line-height:1.7;overflow-x:hidden}
+html[lang=ar]{--f-display:'Amiri','Times New Roman',serif}
 html[lang=ar] body{font-family:'Tajawal','Jost',sans-serif;font-size:18px}
-html[lang=ar]{--f-display:'Reem Kufi','Abril Fatface',serif}
 img,video{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit}
-:focus-visible{outline:2px solid var(--bulb);outline-offset:3px}
-.wrap{max-width:1180px;margin-inline:auto}
-h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
-html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3{font-weight:700;line-height:1.3}
 p{margin:0}
-.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500}
-html[lang=ar] .eyebrow{letter-spacing:0;font-size:.95rem}
+:focus-visible{outline:1px solid var(--gold-hi);outline-offset:4px}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:max(20px,env(safe-area-inset-left,0px)) max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-weight:500;margin:0;line-height:1.08;text-wrap:balance}
+html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3{font-weight:700;line-height:1.35}
+.eyebrow{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:400}
+html[lang=ar] .eyebrow{letter-spacing:.05em;font-size:.95rem}
+.foil{background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+.orn{display:flex;align-items:center;justify-content:center;gap:16px;color:var(--gold);margin:22px auto;max-width:260px}
+.orn::before,.orn::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold-lo))}
+.orn::after{transform:scaleX(-1)}
+.orn i{width:7px;height:7px;transform:rotate(45deg);border:1px solid var(--gold)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 34px;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer;
+  font-size:.74rem;font-weight:500;letter-spacing:.26em;text-transform:uppercase;transition:.35s;white-space:nowrap}
+html[lang=ar] .btn{letter-spacing:.02em;font-size:1rem;text-transform:none}
+.btn:hover{background:var(--gold);color:var(--ink)}
+.btn.solid{background:var(--gold);color:var(--ink)}
+.btn.solid:hover{background:var(--gold-hi);border-color:var(--gold-hi)}
 
 /* header */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));
-  background:rgba(14,11,9,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:50;background:#0e0b09}
-.top .wrap{display:flex;align-items:center;gap:14px;height:64px}
-.brand{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:1.25rem;letter-spacing:.02em;white-space:nowrap}
-.brand img{width:40px;height:40px;border-radius:50%}
-html[lang=ar] .brand{font-size:1.3rem;font-weight:700}
-nav{margin-inline-start:auto;display:flex;gap:4px;align-items:center}
-nav a{padding:8px 12px;border-radius:99px;font-size:.92rem;color:var(--mute);transition:.2s}
+.top{position:sticky;top:0;z-index:40;background:rgba(10,8,6,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft);padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;gap:22px;height:68px}
+.brand{font-family:var(--f-display);font-size:1.55rem;letter-spacing:.08em;font-weight:500;white-space:nowrap}
+html[lang=ar] .brand{font-weight:700;letter-spacing:0;font-size:1.65rem}
+nav{margin-inline-start:auto;display:flex;gap:30px;align-items:center}
+nav a{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);padding:6px 0;border-bottom:1px solid transparent;transition:.3s}
+html[lang=ar] nav a{letter-spacing:0;font-size:1rem;text-transform:none}
 nav a:hover{color:var(--ivory)}
-nav a[aria-current=page]{color:var(--ink);background:var(--gold)}
-.lang{border:1px solid var(--bronze);background:none;border-radius:99px;padding:6px 14px;cursor:pointer;color:var(--gold);font-size:.9rem;white-space:nowrap}
-.lang:hover{background:var(--bronze);color:var(--ink)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:99px;font-weight:500;border:1px solid var(--gold);cursor:pointer;transition:.2s;font-size:1rem}
-.btn.solid{background:var(--gold);color:var(--ink)}
-.btn.solid:hover{background:var(--bulb)}
-.btn.ghost{background:transparent;color:var(--gold)}
-.btn.ghost:hover{background:rgba(217,182,115,.12)}
-.top .btn{padding:8px 18px;font-size:.9rem}
+nav a[aria-current=page]{color:var(--gold-hi);border-bottom-color:var(--gold)}
+.lang{border:1px solid var(--line);background:none;padding:7px 15px;cursor:pointer;color:var(--gold);font-size:.8rem;letter-spacing:.1em}
+.lang:hover{border-color:var(--gold)}
+.top .btn{padding:10px 22px;font-size:.68rem}
 
 /* pages */
 .page{display:none}
-.page.on{display:block;animation:pageIn .6s ease both}
-@keyframes pageIn{from{opacity:.0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.page.on{display:block;animation:pageIn .7s ease both}
+@keyframes pageIn{from{opacity:.01}to{opacity:1}}
 
-/* hero (home) */
-.hero{position:relative;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));
-  background:linear-gradient(180deg,rgba(14,11,9,.2) 0%,rgba(14,11,9,.2) 30%,rgba(14,11,9,.9) 62%,rgba(14,11,9,.97) 100%),url(media/hero.jpg) center top/cover;
-  padding-block:clamp(190px,30vw,360px) 56px;text-align:center}
-.hero .logo{width:min(250px,58vw);margin:0 auto 22px;border-radius:50%;box-shadow:0 0 0 1px rgba(217,182,115,.4),0 18px 60px rgba(0,0,0,.6),0 0 90px rgba(255,195,90,.18);animation:coin 1.2s cubic-bezier(.2,.8,.2,1) both}
-@keyframes coin{from{opacity:.0;transform:scale(.86) rotate(-8deg)}to{opacity:1;transform:none}}
-.hero h1{font-size:clamp(2.6rem,8vw,5.6rem);margin:12px 0 16px}
-.hero p.lead{max-width:34rem;margin:0 auto 26px;color:#e4d7bf;font-size:1.12rem}
-.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.status{display:inline-flex;align-items:center;gap:9px;margin-top:26px;padding:7px 16px;border-radius:99px;background:rgba(14,11,9,.7);border:1px solid var(--line);font-size:.9rem;color:var(--ivory)}
-.dot{width:9px;height:9px;border-radius:50%;background:#6b6b6b}
-.status.open .dot{background:#59d37a;box-shadow:0 0 0 0 rgba(89,211,122,.6);animation:pulse 2s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(89,211,122,0)}100%{box-shadow:0 0 0 0 rgba(89,211,122,0)}}
-
-/* barber pole divider */
-.pole{height:10px;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));
-  background:repeating-linear-gradient(-45deg,var(--ivory) 0 10px,var(--pole-red) 10px 20px,var(--ivory) 20px 30px,var(--pole-blue) 30px 40px);background-size:56.57px 56.57px;animation:slide 3s linear infinite}
-@keyframes slide{to{background-position:56.57px 0}}
+/* home hero: the photograph, small medallion in the corner, text kept low */
+.hero{position:relative;isolation:isolate}
+.hero .pic{position:relative;height:min(66vh,640px);min-height:340px;background:url(media/hero.jpg) center/cover no-repeat}
+.hero .pic::after{content:"";position:absolute;inset:auto 0 0 0;height:22%;background:linear-gradient(0deg,var(--ink),transparent)}
+.hero .logo{position:absolute;top:22px;inset-inline-start:max(20px,env(safe-area-inset-left,0px));width:88px;height:88px;border-radius:50%;box-shadow:0 0 0 1px rgba(214,179,112,.5),0 8px 30px rgba(0,0,0,.6)}
+.hero .in{width:100%;padding-block:8px 20px}
+.hero h1{font-size:clamp(2.5rem,6vw,4.8rem);font-style:italic;font-weight:500;margin:12px 0 12px;color:var(--ivory)}
+html[lang=ar] .hero h1{font-style:normal}
+.hero .lead{max-width:34rem;color:#e6dac2;font-size:1.05rem}
+.hero .row2{display:flex;flex-wrap:wrap;gap:18px 26px;align-items:center;margin-top:26px}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:.84rem;letter-spacing:.06em;color:var(--ivory)}
+.dot{width:8px;height:8px;border-radius:50%;background:#6b6358}
+.status.open .dot{background:var(--gold-hi);box-shadow:0 0 10px rgba(243,223,168,.8)}
 
 /* two doors */
-.doors{display:flex;gap:0;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));min-height:min(70vh,560px)}
-.door{position:relative;flex:1;display:flex;align-items:flex-end;padding:32px max(16px,env(safe-area-inset-left,0px));overflow:hidden;transition:flex .6s cubic-bezier(.2,.8,.2,1);isolation:isolate}
-.door::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--bg) center/cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.door::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,11,9,.1),rgba(14,11,9,.88))}
-.door:hover,.door:focus-visible{flex:1.5}
-.door:hover::before{transform:scale(1.06)}
-.door .t{font-family:var(--f-display);font-size:clamp(2rem,5vw,3.4rem);line-height:1.1}
+.sec{padding-block:96px}
+.head{text-align:center;margin-bottom:40px}
+.head h2{font-size:clamp(2rem,4.6vw,3.4rem);margin-top:10px}
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.door{position:relative;padding:62px 40px 50px;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid var(--line);
+  background:radial-gradient(ellipse at 50% 0%,rgba(214,179,112,.14),transparent 62%),var(--panel);transition:.5s}
+.door::before{content:"";position:absolute;inset:9px;border:1px solid var(--line-soft);pointer-events:none;transition:.5s}
+.door:hover{border-color:var(--gold);background:radial-gradient(ellipse at 50% 0%,rgba(214,179,112,.24),transparent 66%),var(--panel)}
+.door:hover::before{border-color:var(--line)}
+.door .t{font-family:var(--f-display);font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:1.05}
 html[lang=ar] .door .t{font-weight:700}
-.door p{color:#e0d3bb;max-width:22rem;margin-top:6px}
-.door .go{display:inline-block;margin-top:14px;color:var(--gold);font-weight:500;letter-spacing:.04em}
-.door .go::after{content:" →"}
-html[dir=rtl] .door .go::after{content:" ←"}
-.door.barber{--bg:url(media/barber-chairs.jpg)}
-.door.coffee{--bg:url(media/coffee-bar.jpg)}
-.door.barber .t{color:var(--ivory);text-shadow:0 2px 14px rgba(0,0,0,.7);padding-bottom:10px;position:relative}
-.door.barber .t::after{content:"";position:absolute;inset-inline:0;bottom:0;height:7px;background:repeating-linear-gradient(-45deg,var(--ivory) 0 7px,var(--pole-red) 7px 14px,var(--ivory) 14px 21px,var(--pole-blue) 21px 28px);background-size:39.6px 39.6px;animation:slide 3s linear infinite;max-width:9em}
-@keyframes slideT{to{background-position:.735em 0}}
-.door.coffee .t{color:var(--bulb);text-shadow:0 0 18px rgba(255,170,40,.75),0 0 2px #fff0c8}
-@media (max-width:760px){.doors{flex-direction:column}.door{min-height:300px}.door:hover{flex:1}}
+.door p{color:var(--mute);margin-top:10px;max-width:24rem}
+.door .go{margin-top:26px;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);display:inline-flex;gap:12px;align-items:center}
+html[lang=ar] .door .go{letter-spacing:0;font-size:1rem;text-transform:none}
+.door .go::after{content:"";width:34px;height:1px;background:var(--gold);transition:.4s}
+.door:hover .go::after{width:56px}
+@media (max-width:760px){.doors{grid-template-columns:1fr}.door{padding:48px 28px 40px}}
 
-/* sections */
-section{padding-block:84px}
-.head{margin-bottom:34px}
-.head h2{font-size:clamp(2rem,5vw,3.2rem);margin-top:8px}
-.split{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+/* about + video */
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:center}
 .split>*{min-width:0}
-.about p{color:#dccfb6;font-size:1.08rem;margin-top:18px}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-.chip{border:1px solid var(--line);background:var(--panel);padding:7px 16px;border-radius:99px;font-size:.9rem;color:var(--gold)}
-/* gold picture frame video */
-.frame{justify-self:center;width:min(100%,360px);padding:14px;background:linear-gradient(135deg,#e6c585,#8a6630 45%,#d9b673 60%,#6f4f22);border-radius:6px;box-shadow:0 30px 70px rgba(0,0,0,.65)}
-.frame .mat{background:#efe6d3;padding:12px;border-radius:2px}
-.frame .vid{position:relative;aspect-ratio:9/16;background:#000;overflow:hidden}
-.frame video{width:100%;height:100%;object-fit:cover}
-.play{position:absolute;inset:0;display:grid;place-items:center;border:0;cursor:pointer;background:linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.45))}
-.play span{width:78px;height:78px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-size:1.7rem;padding-inline-start:5px;box-shadow:0 0 0 8px rgba(217,182,115,.25)}
-.play.hide{display:none}
-@media (max-width:860px){.split{grid-template-columns:1fr;gap:40px}}
-
-/* gallery */
-.gal{columns:3 260px;column-gap:14px}
-.gal button{display:block;width:100%;margin:0 0 14px;padding:0;border:0;background:none;cursor:zoom-in;break-inside:avoid;overflow:hidden;border-radius:4px;border:1px solid var(--line)}
-.gal img{width:100%;height:auto;transition:transform .8s ease,filter .4s}
-.gal button:hover img{transform:scale(1.04);filter:brightness(1.1)}
-.lb{position:fixed;inset:0;z-index:100;background:rgba(8,6,4,.94);display:none;place-items:center;padding:20px;cursor:zoom-out}
-.lb.on{display:grid}
-.lb img{max-height:92vh;max-width:96vw;object-fit:contain;border:6px solid #b8914f;border-radius:2px}
+.about h2{font-size:clamp(2rem,4.6vw,3.4rem);margin-top:10px}
+.about p{color:#d9cdb4;margin-top:22px;font-size:1.04rem}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{border:1px solid var(--line);padding:6px 16px;font-size:.8rem;letter-spacing:.08em;color:var(--gold)}
+.frame{justify-self:center;width:min(100%,350px);padding:10px;border:1px solid var(--gold-lo);box-shadow:0 40px 90px rgba(0,0,0,.7)}
+.frame .mat{padding:10px;border:1px solid var(--line-soft);background:#000}
+.vid{position:relative;aspect-ratio:9/16;background:#000;overflow:hidden}
+.vid video{width:100%;height:100%;object-fit:cover;cursor:pointer}
+.snd{position:absolute;bottom:12px;inset-inline-end:12px;border:1px solid var(--gold);background:rgba(10,8,6,.72);color:var(--gold-hi);padding:7px 14px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer}
+html[lang=ar] .snd{letter-spacing:0;font-size:.9rem;text-transform:none}
+@media (max-width:860px){.split{grid-template-columns:1fr;gap:48px}}
 
 /* reviews */
-.rev{background:linear-gradient(135deg,var(--panel),#241b14);border:1px solid var(--line);border-radius:10px;padding:44px 28px;text-align:center}
-.stars{color:var(--bulb);letter-spacing:.2em;font-size:1.6rem}
-.rev h3{font-size:clamp(1.6rem,4vw,2.4rem);margin:12px 0}
-.rev p{color:var(--mute);max-width:36rem;margin:0 auto 24px}
-.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:24px 0;text-align:start}
-.rcard{background:var(--coal);border:1px solid var(--line);padding:20px;border-radius:8px}
+.rev{border:1px solid var(--line);padding:56px 28px;text-align:center;position:relative;background:radial-gradient(ellipse at 50% 0%,rgba(214,179,112,.1),transparent 70%)}
+.rev::before{content:"";position:absolute;inset:9px;border:1px solid var(--line-soft);pointer-events:none}
+.stars{color:var(--gold-hi);letter-spacing:.3em;font-size:1.3rem}
+.rev h3{font-size:clamp(1.8rem,4vw,2.8rem);margin:14px 0}
+.rev p{color:var(--mute);max-width:36rem;margin:0 auto 28px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:26px 0;text-align:start}
+.rcard{border:1px solid var(--line);padding:22px}
 
 /* visit */
 .visit{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .visit>*{min-width:0}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px}
-.card h3{font-size:1.5rem;margin-bottom:16px}
+.card{border:1px solid var(--line);padding:34px 32px;background:var(--panel)}
+.card h3{font-size:1.9rem;margin-bottom:18px;color:var(--gold-hi)}
 .hours{width:100%;border-collapse:collapse}
-.hours td{padding:9px 0;border-bottom:1px dotted var(--line)}
+.hours td{padding:11px 0;border-bottom:1px solid var(--line-soft)}
 .hours td:last-child{text-align:end;color:var(--mute);font-variant-numeric:tabular-nums}
-.hours tr.today td{color:var(--bulb);font-weight:600}
-.row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:12px 0;border-bottom:1px dotted var(--line)}
+.hours tr.today td{color:var(--gold-hi);font-weight:500}
+.row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:14px 0;border-bottom:1px solid var(--line-soft)}
 .row:last-child{border:0}
-.row .k{color:var(--mute);font-size:.88rem;flex-basis:100%}
-.row .v{font-size:1.1rem;font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:plaintext;overflow-wrap:anywhere}
+.row .k{color:var(--mute);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;flex-basis:100%}
+html[lang=ar] .row .k{letter-spacing:0;font-size:.92rem;text-transform:none}
+.row .v{font-size:1.08rem;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.row .v.ltr{direction:ltr;unicode-bidi:plaintext}
 .mini{display:flex;gap:8px;flex-wrap:wrap}
-.mini a,.mini button{border:1px solid var(--bronze);background:none;border-radius:99px;padding:5px 14px;font-size:.85rem;color:var(--gold);cursor:pointer}
-.mini a:hover,.mini button:hover{background:var(--bronze);color:var(--ink)}
+.mini a,.mini button{border:1px solid var(--line);background:none;padding:5px 14px;font-size:.78rem;color:var(--gold);cursor:pointer;transition:.3s}
+.mini a:hover,.mini button:hover{border-color:var(--gold);background:var(--gold);color:var(--ink)}
 @media (max-width:860px){.visit{grid-template-columns:1fr}}
 
-/* inner page heroes */
-.ph{position:relative;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:90px max(16px,env(safe-area-inset-left,0px)) 70px;text-align:center;isolation:isolate;overflow:hidden}
-.ph::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--img) center/cover}
-.ph::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,11,9,.45),rgba(14,11,9,.95))}
-.ph .big{font-family:var(--f-display);font-size:clamp(4rem,17vw,11rem);line-height:1;margin:10px 0 6px;letter-spacing:.02em}
-html[lang=ar] .ph .big{font-weight:700;line-height:1.25;font-size:clamp(3.6rem,15vw,9rem)}
-.ph p.sub{max-width:34rem;margin:0 auto;color:#e4d7bf;font-size:1.12rem}
-.ph.barber{--img:url(media/barber-hall.jpg)}
-.ph.coffee{--img:url(media/coffee-front.jpg)}
-.ph.coffee::before{background-position:center 30%}
-.pole-t{background:repeating-linear-gradient(-45deg,var(--ivory) 0 .12em,var(--pole-red) .12em .24em,var(--ivory) .24em .36em,var(--pole-blue) .36em .48em);background-size:.68em .68em;-webkit-background-clip:text;background-clip:text;color:transparent;animation:slideT2 5s linear infinite;filter:drop-shadow(0 4px 14px rgba(0,0,0,.7))}
-@keyframes slideT2{to{background-position:.68em 0}}
-/* marquee-bulb letters */
-.bulb-t{color:transparent;background:radial-gradient(circle at 50% 50%,#fff6d6 0 22%,#ffc35a 36%,rgba(255,150,30,.0) 58%) 0 0/.085em .085em;-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 .1em rgba(255,160,30,.75));animation:flick 5s infinite}
-html[lang=ar] .bulb-t{background-size:.07em .07em}
-@keyframes flick{0%,92%,100%{opacity:1}94%{opacity:.7}96%{opacity:1}97%{opacity:.8}}
+/* inner page headings */
+.ph{text-align:center;padding:96px 0 40px;background:radial-gradient(ellipse at 50% 0%,rgba(214,179,112,.16),transparent 62%)}
+.ph .big{font-family:var(--f-display);font-size:clamp(3.6rem,15vw,9.5rem);font-weight:500;line-height:1;letter-spacing:.06em;margin:14px 0 4px}
+html[lang=ar] .ph .big{font-weight:700;letter-spacing:0;line-height:1.3;font-size:clamp(3.4rem,14vw,8rem)}
+.ph p.sub{max-width:34rem;margin:0 auto;color:#e0d4bb;font-size:1.08rem}
+.ph .btn{margin-top:30px}
 
-/* services menu */
-.menu{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+/* photo sets, shown only on their own page */
+.tri{display:grid;gap:14px}
+.tri button{padding:0;border:1px solid var(--line);background:#000;cursor:zoom-in;overflow:hidden;position:relative}
+.tri button::after{content:"";position:absolute;inset:8px;border:1px solid rgba(214,179,112,.0);transition:.5s;pointer-events:none}
+.tri button:hover::after{border-color:rgba(214,179,112,.55)}
+.tri img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.tri button:hover img{transform:scale(1.04)}
+.tri.land{grid-template-columns:1fr 1fr}
+.tri.land button:first-child{grid-column:1/-1;aspect-ratio:16/8}
+.tri.land button:not(:first-child){aspect-ratio:3/2}
+.tri.port{grid-template-columns:repeat(3,1fr)}
+.tri.port button{aspect-ratio:9/15}
+@media (max-width:640px){.tri.land{grid-template-columns:1fr}.tri.land button:first-child{aspect-ratio:3/2}.tri.port{grid-template-columns:1fr 1fr}.tri.port button:first-child{grid-column:1/-1;aspect-ratio:3/4}}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(6,5,4,.96);display:none;place-items:center;padding:20px;cursor:zoom-out}
+.lb.on{display:grid}
+.lb img{max-height:92vh;max-width:96vw;object-fit:contain;border:1px solid var(--gold-lo);padding:8px;background:#000}
+
+/* service menu */
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:56px 64px}
 .menu>*{min-width:0}
-.cat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px 26px}
 .cat.wide{grid-column:1/-1}
-.cat h3{font-size:1.7rem;color:var(--gold);padding-bottom:12px;margin-bottom:6px;border-bottom:2px solid var(--bronze)}
-.item{padding:14px 0;border-bottom:1px dotted var(--line)}
+.cat h3{font-size:2.1rem;color:var(--gold-hi);padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid var(--gold-lo);display:flex;align-items:center;gap:14px}
+.item{padding:16px 0;border-bottom:1px solid var(--line-soft)}
 .item:last-child{border:0}
-.item .l{display:flex;align-items:baseline;gap:10px}
-.item .n{font-weight:500;font-size:1.08rem}
-.item .lead{flex:1;border-bottom:1px dotted var(--mute);transform:translateY(-4px);min-width:16px}
-.item .p{font-family:var(--f-display);color:var(--bulb);font-size:1.25rem;white-space:nowrap;font-variant-numeric:tabular-nums}
-html[lang=ar] .item .p{font-weight:700}
-.item .m{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.88rem;color:var(--mute);margin-top:2px}
-.tag{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;background:var(--brick);color:#fff;padding:2px 9px;border-radius:99px;font-weight:600;align-self:center}
+.item .l{display:flex;align-items:baseline;gap:12px}
+.item .n{font-size:1.06rem;font-weight:400}
+.item .lead{flex:1;border-bottom:1px dotted rgba(214,179,112,.35);transform:translateY(-4px);min-width:16px}
+.item .p{font-family:var(--f-display);color:var(--gold-hi);font-size:1.5rem;white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
+html[lang=ar] .item .p{font-weight:700;font-size:1.3rem}
+.item .m{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.86rem;color:var(--mute);margin-top:3px}
+.tag{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:1px 9px;align-self:center}
 html[lang=ar] .tag{letter-spacing:0;font-size:.78rem}
-.save{color:#7fd699}
-.note{margin-top:26px;color:var(--mute);font-size:.92rem;text-align:center}
-@media (max-width:860px){.menu{grid-template-columns:1fr}}
-.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.pair img{width:100%;height:100%;min-height:240px;object-fit:cover;border:1px solid var(--line);border-radius:4px}
-.cta-band{text-align:center;padding-block:70px;background:radial-gradient(ellipse at center,rgba(179,138,80,.18),transparent 70%)}
-.cta-band h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:22px}
+.save{color:var(--gold)}
+.note{margin-top:36px;color:var(--mute);font-size:.9rem;text-align:center}
+@media (max-width:860px){.menu{grid-template-columns:1fr;gap:44px}}
+.cta-band{text-align:center;padding-block:84px 96px;border-top:1px solid var(--line-soft)}
+.cta-band h2{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:28px}
 
-footer{border-top:1px solid var(--line);padding-block:36px 100px;color:var(--mute);font-size:.9rem}
+footer{border-top:1px solid var(--line);padding-block:40px 110px;color:var(--mute);font-size:.86rem}
 footer .wrap{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between}
 footer a:hover{color:var(--gold)}
 .mbar{display:none}
 @media (max-width:640px){
-  nav a{padding:8px 9px;font-size:.85rem}
+  .top .wrap{gap:12px;height:62px}
+  .brand{font-size:1.3rem}
+  nav{gap:16px}
+  nav a{font-size:.62rem;letter-spacing:.14em}
+  html[lang=ar] nav a{font-size:.9rem}
   .top .btn{display:none}
-  .brand span{display:none}
-  .mbar{display:flex;gap:10px;position:fixed;bottom:0;inset-inline:0;z-index:45;padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:rgba(14,11,9,.94);border-top:1px solid var(--line)}
-  .mbar .btn{flex:1;padding:12px}
+  .hero .logo{width:72px;height:72px;top:16px}
+  .hero .pic{height:56vh}
+  .sec{padding-block:68px}
+  .mbar{display:flex;gap:10px;position:fixed;bottom:0;left:0;right:0;z-index:45;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(10,8,6,.96);border-top:1px solid var(--line)}
+  .mbar .btn{flex:1;padding:13px 8px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
@@ -215,13 +213,13 @@ footer a:hover{color:var(--gold)}
 <body>
 
 <header class="top"><div class="wrap">
-  <a class="brand" href="#home"><img src="media/logo.png" alt="alf991 logo" width="40" height="40"><span data-t="brand"></span></a>
+  <a class="brand" href="#home" data-t="brand"></a>
   <nav aria-label="Main">
     <a href="#home" data-nav="home" data-t="nav_home"></a>
     <a href="#barber" data-nav="barber" data-t="nav_barber"></a>
     <a href="#coffee" data-nav="coffee" data-t="nav_coffee"></a>
   </nav>
-  <a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a>
+  <a class="btn" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a>
   <button class="lang" id="langBtn" type="button" aria-label="Language"></button>
 </div></header>
 
@@ -229,50 +227,47 @@ footer a:hover{color:var(--gold)}
 <!-- HOME -->
 <div class="page" id="p-home">
   <div class="hero">
-    <img class="logo" src="media/logo.png" alt="alf991 barber &amp; coffee" width="250" height="250">
-    <div class="eyebrow" data-t="h_eyebrow"></div>
-    <h1 data-t="h_title"></h1>
-    <p class="lead" data-t="h_lead"></p>
-    <div class="cta">
-      <a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a>
-      <a class="btn ghost" href="#home" data-scroll="visit" data-t="visit_us"></a>
-    </div>
-    <div class="status" id="status"><span class="dot"></span><span id="statusTxt"></span></div>
+    <div class="pic"><img class="logo" src="media/logo.png" alt="alf991 barber &amp; coffee" width="88" height="88"></div>
+    <div class="wrap"><div class="in">
+      <div class="eyebrow" data-t="h_eyebrow"></div>
+      <h1 data-t="h_title"></h1>
+      <p class="lead" data-t="h_lead"></p>
+      <div class="row2">
+        <a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a>
+        <a class="btn" href="#home" data-scroll="visit" data-t="visit_us"></a>
+        <div class="status" id="status"><span class="dot"></span><span id="statusTxt"></span></div>
+      </div>
+    </div></div>
   </div>
-  <div class="pole"></div>
-  <div class="doors">
-    <a class="door barber" href="#barber"><div><div class="t" data-t="d_barber"></div><p data-t="d_barber_s"></p><span class="go" data-t="enter"></span></div></a>
-    <a class="door coffee" href="#coffee"><div><div class="t" data-t="d_coffee"></div><p data-t="d_coffee_s"></p><span class="go" data-t="enter"></span></div></a>
-  </div>
-  <div class="pole"></div>
 
   <div class="wrap">
-    <section>
+    <section class="sec">
+      <div class="head"><div class="eyebrow" data-t="d_eyebrow"></div><h2 class="foil" data-t="d_title"></h2><div class="orn"><i></i></div></div>
+      <div class="doors">
+        <a class="door" href="#barber"><div class="t foil" data-t="d_barber"></div><p data-t="d_barber_s"></p><span class="go" data-t="enter"></span></a>
+        <a class="door" href="#coffee"><div class="t foil" data-t="d_coffee"></div><p data-t="d_coffee_s"></p><span class="go" data-t="enter"></span></a>
+      </div>
+    </section>
+
+    <section class="sec" style="padding-top:20px">
       <div class="split">
         <div class="about">
           <div class="eyebrow" data-t="a_eyebrow"></div>
-          <h2 data-t="a_title" style="font-size:clamp(2rem,5vw,3.2rem);margin-top:8px"></h2>
+          <h2 class="foil" data-t="a_title"></h2>
           <p data-t="a_text"></p>
           <div class="chips" id="chips"></div>
         </div>
         <div class="frame"><div class="mat"><div class="vid">
-          <video id="vid" src="media/tour.mp4" poster="media/poster.jpg" preload="metadata" playsinline controls></video>
-          <button class="play" id="play" type="button" aria-label="Play video"><span>▶</span></button>
+          <video id="vid" src="media/tour.mp4" poster="media/poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+          <button class="snd" id="snd" type="button"></button>
         </div></div></div>
       </div>
     </section>
 
-    <section style="padding-top:0">
-      <div class="head"><div class="eyebrow" data-t="g_eyebrow"></div><h2 data-t="g_title"></h2></div>
-      <div class="gal" id="gal"></div>
-    </section>
+    <section class="sec" style="padding-top:0"><div class="rev" id="rev"></div></section>
 
-    <section style="padding-top:0">
-      <div class="rev" id="rev"></div>
-    </section>
-
-    <section id="visit" style="padding-top:0">
-      <div class="head"><div class="eyebrow" data-t="v_eyebrow"></div><h2 data-t="v_title"></h2></div>
+    <section class="sec" id="visit" style="padding-top:0">
+      <div class="head"><div class="eyebrow" data-t="v_eyebrow"></div><h2 class="foil" data-t="v_title"></h2><div class="orn"><i></i></div></div>
       <div class="visit">
         <div class="card"><h3 data-t="v_hours"></h3><table class="hours" id="hours"></table></div>
         <div class="card"><h3 data-t="v_contact"></h3><div id="contact"></div></div>
@@ -283,47 +278,53 @@ footer a:hover{color:var(--gold)}
 
 <!-- BARBER -->
 <div class="page" id="p-barber">
-  <div class="ph barber">
+  <div class="ph"><div class="wrap">
     <div class="eyebrow" data-t="b_eyebrow"></div>
-    <div class="big pole-t" data-t="b_big"></div>
+    <div class="big foil" data-t="b_big"></div>
+    <div class="orn"><i></i></div>
     <p class="sub" data-t="b_sub"></p>
-    <div style="margin-top:26px"><a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a></div>
-  </div>
-  <div class="pole"></div>
+    <a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a>
+  </div></div>
   <div class="wrap">
-    <section style="padding-bottom:40px">
-      <div class="head"><div class="eyebrow" data-t="s_eyebrow"></div><h2 data-t="s_title"></h2></div>
+    <section style="padding-block:30px 20px">
+      <div class="tri land">
+        <button type="button" data-lb="media/barber-hall.jpg"><img src="media/barber-hall.jpg" alt="Barber shop floor" loading="lazy"></button>
+        <button type="button" data-lb="media/barber-shelves.jpg"><img src="media/barber-shelves.jpg" alt="Barber shop shelves and mirrors" loading="lazy"></button>
+        <button type="button" data-lb="media/barber-chairs.jpg"><img src="media/barber-chairs.jpg" alt="Classic barber chairs" loading="lazy"></button>
+      </div>
+    </section>
+    <section class="sec">
+      <div class="head"><div class="eyebrow" data-t="s_eyebrow"></div><h2 class="foil" data-t="s_title"></h2><div class="orn"><i></i></div></div>
       <div class="menu" id="menu"></div>
       <p class="note" data-t="s_note"></p>
     </section>
-    <section style="padding-top:20px"><div class="pair">
-      <img src="media/barber-shelves.jpg" alt="Barber shop shelves and mirrors" loading="lazy">
-      <img src="media/barber-chairs.jpg" alt="Classic barber chairs" loading="lazy">
-    </div></section>
   </div>
-  <div class="cta-band"><h2 data-t="b_cta"></h2><a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a></div>
+  <div class="cta-band"><div class="wrap"><h2 class="foil" data-t="b_cta"></h2><a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a></div></div>
 </div>
 
 <!-- COFFEE -->
 <div class="page" id="p-coffee">
-  <div class="ph coffee">
+  <div class="ph"><div class="wrap">
     <div class="eyebrow" data-t="c_eyebrow"></div>
-    <div class="big bulb-t" data-t="c_big"></div>
+    <div class="big foil" data-t="c_big"></div>
+    <div class="orn"><i></i></div>
     <p class="sub" data-t="c_sub"></p>
-  </div>
-  <div class="pole"></div>
+  </div></div>
   <div class="wrap">
-    <section style="padding-bottom:40px">
-      <div class="head"><div class="eyebrow" data-t="m_eyebrow"></div><h2 data-t="m_title"></h2></div>
+    <section style="padding-block:30px 20px">
+      <div class="tri port">
+        <button type="button" data-lb="media/coffee-front.jpg"><img src="media/coffee-front.jpg" alt="The coffee sign at night" loading="lazy"></button>
+        <button type="button" data-lb="media/coffee-bar.jpg"><img src="media/coffee-bar.jpg" alt="The coffee bar" loading="lazy"></button>
+        <button type="button" data-lb="media/coffee-barista.jpg"><img src="media/coffee-barista.jpg" alt="Barista pouring an iced drink" loading="lazy"></button>
+      </div>
+    </section>
+    <section class="sec">
+      <div class="head"><div class="eyebrow" data-t="m_eyebrow"></div><h2 class="foil" data-t="m_title"></h2><div class="orn"><i></i></div></div>
       <div class="menu" id="cmenu"></div>
       <p class="note" data-t="m_note"></p>
     </section>
-    <section style="padding-top:20px"><div class="pair">
-      <img src="media/coffee-barista.jpg" alt="Barista pouring an iced drink" loading="lazy">
-      <img src="media/coffee-bar.jpg" alt="The coffee bar" loading="lazy">
-    </div></section>
   </div>
-  <div class="cta-band"><h2 data-t="c_cta"></h2><a class="btn ghost" href="#home" data-scroll="visit" data-t="visit_us"></a></div>
+  <div class="cta-band"><div class="wrap"><h2 class="foil" data-t="c_cta"></h2><a class="btn" href="#home" data-scroll="visit" data-t="visit_us"></a></div></div>
 </div>
 </main>
 
@@ -334,7 +335,7 @@ footer a:hover{color:var(--gold)}
 
 <div class="mbar">
   <a class="btn solid" href="https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6" target="_blank" rel="noopener" data-t="book"></a>
-  <a class="btn ghost" href="https://wa.me/962775851991" target="_blank" rel="noopener" data-t="wa"></a>
+  <a class="btn" href="https://wa.me/962775851991" target="_blank" rel="noopener" data-t="wa"></a>
 </div>
 <div class="lb" id="lb" role="dialog" aria-label="Photo"><img id="lbImg" alt=""></div>
 
@@ -342,36 +343,38 @@ footer a:hover{color:var(--gold)}
 const FRESHA='https://www.fresha.com/a/alf991-barber-coffee-amman-abdallah-al-hammoud-st-qxl9suh6';
 const MAPS='https://maps.app.goo.gl/CrmdUJqhNibtgRAT9?g_st=ic';
 const IG='https://www.instagram.com/alf991.jo';
-/* Paste real Google data here when available: {rating:4.9,count:120,items:[{name:'',text:'',stars:5}]} */
+/* Real Google data goes here when available: {rating:4.9,count:120,items:[{name:'',text:'',stars:5}]} */
 const REVIEWS={rating:null,count:null,items:[]};
 
 const T={
 en:{brand:'alf991',nav_home:'Home',nav_barber:'Barber',nav_coffee:'Coffee',book:'Book now',wa:'WhatsApp',visit_us:'Visit us',enter:'Enter',map:'Google Maps',
  h_eyebrow:'Barber & Coffee · Amman',h_title:'Fresh cut. Fresh brew.',h_lead:'Old-school barbering and a proper coffee bar under one roof on Abdallah Al-Hammoud St.',
+ d_eyebrow:'Two rooms, one door',d_title:'Choose your side',
  d_barber:'The Barber',d_barber_s:'Cuts, beard care, hot oil bath, colour and facials.',d_coffee:'The Coffee Bar',d_coffee_s:'Espresso, matcha and iced drinks, made at the bar.',
  a_eyebrow:'About alf991',a_title:'Step inside',
  a_text:'alf991 barber & coffee brings professional hair styling together with a relaxed café atmosphere, a natural stop for anyone who loves grooming and good coffee. Our professionals offer classic old-school haircuts by expert hands, hot oil baths, hair colouring and styling, so every guest gets a personal, one-of-a-kind experience. The place is friendly to families and children, with facilities that make your visit easy and comfortable.',
  chips:['Family & kids friendly','Old-school cuts','Hot oil bath','Coffee bar','Online booking'],
- g_eyebrow:'The place',g_title:'Brick, brass and warm light',
+ snd_on:'Sound on',snd_off:'Sound off',
  r_title:'Loved by our guests?',r_text:'Read what guests say about alf991 and leave your own review on Google.',r_btn:'See Google reviews',r_count:'reviews on Google',
  v_eyebrow:'Find us',v_title:'Visit alf991',v_hours:'Opening hours',v_contact:'Contact',
  k_addr:'Address',v_addr:'Abdallah Al-Hammoud St., Amman',k_wa:'Call or WhatsApp',k_call:'Call',k_mail:'Email',k_ig:'Instagram',k_book:'Online booking',
  open_map:'Open map',call:'Call',whatsapp:'WhatsApp',copy:'Copy',copied:'Copied',open_ig:'Open',book_fresha:'Book on Fresha',
  open_now:'Open now · until',closed_now:'Closed · opens at',
  days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
- b_eyebrow:'Old-school barbering',b_big:'BARBER',b_sub:'Classic cuts, clean beards and care that takes its time.',
+ b_eyebrow:'Old-school barbering',b_big:'Barber',b_sub:'Classic cuts, clean beards and care that takes its time.',
  s_eyebrow:'Services & prices',s_title:'The menu',s_note:'Prices in Jordanian dinar, with times as listed on our booking page.',b_cta:'Take a seat.',
  pop:'Popular',save:'Save',
- c_eyebrow:'The coffee bar',c_big:'COFFEE',c_sub:'Espresso, matcha and iced drinks, made at the bar.',
+ c_eyebrow:'The coffee bar',c_big:'Coffee',c_sub:'Espresso, matcha and iced drinks, made at the bar.',
  m_eyebrow:'Drinks',m_title:'Coffee menu',m_note:'Menu preview. Our full menu is coming soon.',c_cta:'Come in for a cup.',
  foot:'© 2026 alf991 barber & coffee · Amman, Jordan'},
 ar:{brand:'ألف 991',nav_home:'الرئيسية',nav_barber:'الحلاقة',nav_coffee:'القهوة',book:'احجز الآن',wa:'واتساب',visit_us:'زورونا',enter:'ادخل',map:'خرائط جوجل',
  h_eyebrow:'حلاقة وقهوة · عمّان',h_title:'قصّة جديدة. قهوة طازجة.',h_lead:'حلاقة بروح الزمن الجميل وبار قهوة متكامل تحت سقف واحد في شارع عبدالله الحمود.',
+ d_eyebrow:'مكانان وباب واحد',d_title:'اختر وجهتك',
  d_barber:'الحلاقة',d_barber_s:'قص شعر، عناية باللحية، حمام زيت، صبغ وعناية بالبشرة.',d_coffee:'بار القهوة',d_coffee_s:'إسبريسو وماتشا ومشروبات باردة تُحضَّر على البار.',
  a_eyebrow:'عن ألف 991',a_title:'تفضّل بالدخول',
  a_text:'تجمع ألف 991 باربر آند كوفي بين لمسة الاحتراف في تصفيف الشعر وأجواء مقهى مريحة، مما يجعلها وجهة مثالية لعشاق الجمال والقهوة. يقدّم المحترفون خدمات متنوعة تشمل حلاقة شعر من العصر القديم على أيادي محترفين، وحمام الزيت، وصبغ الشعر، وتصفيفه، لضمان حصول كل عميل على تجربة مخصصة وفريدة. المكان صديق للعائلات والأطفال، ويتميز بمرافق تسهّل الزيارة، مما يضمن لك تجربة مريحة وممتعة.',
  chips:['صديق للعائلات والأطفال','حلاقة على الطريقة القديمة','حمام زيت','بار قهوة','حجز أونلاين'],
- g_eyebrow:'المكان',g_title:'طوب ونحاس وضوء دافئ',
+ snd_on:'تشغيل الصوت',snd_off:'كتم الصوت',
  r_title:'أعجبتك تجربتك؟',r_text:'اقرأ آراء ضيوفنا عن ألف 991 على جوجل، وشاركنا رأيك.',r_btn:'شاهد التقييمات على جوجل',r_count:'تقييم على جوجل',
  v_eyebrow:'اعثر علينا',v_title:'زوروا ألف 991',v_hours:'ساعات العمل',v_contact:'التواصل',
  k_addr:'العنوان',v_addr:'شارع عبدالله الحمود، عمّان',k_wa:'اتصال أو واتساب',k_call:'اتصال',k_mail:'البريد الإلكتروني',k_ig:'إنستغرام',k_book:'الحجز أونلاين',
@@ -386,7 +389,7 @@ ar:{brand:'ألف 991',nav_home:'الرئيسية',nav_barber:'الحلاقة',n
  foot:'© 2026 ألف 991 باربر آند كوفي · عمّان، الأردن'}
 };
 
-/* Service data: [en, ar, minutes, price, popular, descEn, descAr] */
+/* [en, ar, minutes, price, popular, descEn, descAr, fullPrice?] */
 const CATS=[
  {en:'Signature & packages',ar:'الباقات',wide:true,items:[
   ['ALF991 Signature','ALF991 Signature',65,20,1,'Haircut, beard shave and hair style in one visit.','قص شعر وحلاقة لحية وتصفيف في زيارة واحدة.',22],
@@ -422,7 +425,6 @@ const COFFEE=[
  {en:'Matcha',ar:'ماتشا',wide:true,items:[['Matcha Latte','ماتشا لاتيه'],['Iced Matcha','آيس ماتشا'],['Strawberry Matcha','ماتشا بالفراولة'],['Mango Matcha','ماتشا بالمانجو'],['Vanilla Matcha','ماتشا بالفانيلا']]}
 ];
 const HOURS=[[8,23],[8,23.5],[8,23.5],[8,23],[8,23],[8,23],[8,23]]; // Sun..Sat
-const PHOTOS=['hero','barber-hall','coffee-front','barber-shelves','coffee-barista','barber-chairs','coffee-bar'];
 
 let lang='en';
 try{const s=localStorage.getItem('alf-lang');if(s==='ar'||s==='en')lang=s}catch(e){}
@@ -445,35 +447,37 @@ function renderHours(){const {wd}=amman();
   $('#hours').innerHTML=HOURS.map((x,i)=>`<tr class="${i===wd?'today':''}"><td>${t('days')[i]}</td><td>${hm(x[0],lang)} – ${hm(x[1],lang)}</td></tr>`).join('')}
 
 function renderContact(){
-  const row=(k,v,btns)=>`<div class="row"><span class="k">${k}</span><span class="v">${v}</span><span class="mini">${btns}</span></div>`;
+  const row=(k,v,btns,ltr)=>`<div class="row"><span class="k">${k}</span><span class="v${ltr?' ltr':''}">${v}</span><span class="mini">${btns}</span></div>`;
   const cp=(txt)=>`<button type="button" data-copy="${txt}">${t('copy')}</button>`;
   $('#contact').innerHTML=
-   row(t('k_addr'),`<span style="direction:inherit">${t('v_addr')}</span>`,`<a href="${MAPS}" target="_blank" rel="noopener">${t('open_map')}</a>`)+
-   row(t('k_wa'),'+962 7 7585 1991',`<a href="https://wa.me/962775851991" target="_blank" rel="noopener">${t('whatsapp')}</a><a href="tel:+962775851991">${t('call')}</a>${cp('+962775851991')}`)+
-   row(t('k_call'),'+962 6 585 1991',`<a href="tel:+96265851991">${t('call')}</a>${cp('+96265851991')}`)+
-   row(t('k_mail'),'Alf991jo@gmail.com',`<a href="mailto:Alf991jo@gmail.com">${t('k_mail')}</a>${cp('Alf991jo@gmail.com')}`)+
-   row(t('k_ig'),'@alf991.jo',`<a href="${IG}" target="_blank" rel="noopener">${t('open_ig')}</a>`)+
+   row(t('k_addr'),t('v_addr'),`<a href="${MAPS}" target="_blank" rel="noopener">${t('open_map')}</a>`)+
+   row(t('k_wa'),'+962 7 7585 1991',`<a href="https://wa.me/962775851991" target="_blank" rel="noopener">${t('whatsapp')}</a><a href="tel:+962775851991">${t('call')}</a>${cp('+962775851991')}`,1)+
+   row(t('k_call'),'+962 6 585 1991',`<a href="tel:+96265851991">${t('call')}</a>${cp('+96265851991')}`,1)+
+   row(t('k_mail'),'Alf991jo@gmail.com',`<a href="mailto:Alf991jo@gmail.com">${t('k_mail')}</a>${cp('Alf991jo@gmail.com')}`,1)+
+   row(t('k_ig'),'@alf991.jo',`<a href="${IG}" target="_blank" rel="noopener">${t('open_ig')}</a>`,1)+
    row(t('k_book'),'Fresha',`<a href="${FRESHA}" target="_blank" rel="noopener">${t('book_fresha')}</a>`);
   document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{
     const v=b.dataset.copy,old=b.textContent;
-    try{await navigator.clipboard.writeText(v)}catch(e){const r=document.createRange();const s=b.closest('.row').querySelector('.v');r.selectNodeContents(s);const sel=getSelection();sel.removeAllRanges();sel.addRange(r)}
+    try{await navigator.clipboard.writeText(v)}catch(e){const r=document.createRange();r.selectNodeContents(b.closest('.row').querySelector('.v'));const sel=getSelection();sel.removeAllRanges();sel.addRange(r)}
     b.textContent=t('copied');setTimeout(()=>b.textContent=old,1400)})}
 
 function renderReviews(){
   if(REVIEWS.rating){
-    $('#rev').innerHTML=`<div class="stars" aria-hidden="true">★★★★★</div><h3>${REVIEWS.rating} / 5</h3><p>${REVIEWS.count} ${t('r_count')}</p>`+
-      (REVIEWS.items.length?`<div class="rgrid">${REVIEWS.items.map(r=>`<div class="rcard"><div class="stars" style="font-size:1rem">${'★'.repeat(r.stars||5)}</div><p style="margin:8px 0;color:var(--ivory)">${r.text}</p><b>${r.name}</b></div>`).join('')}</div>`:'')+
+    $('#rev').innerHTML=`<div class="stars" aria-hidden="true">★★★★★</div><h3 class="foil">${REVIEWS.rating} / 5</h3><p>${REVIEWS.count} ${t('r_count')}</p>`+
+      (REVIEWS.items.length?`<div class="rgrid">${REVIEWS.items.map(r=>`<div class="rcard"><div class="stars" style="font-size:.9rem">${'★'.repeat(r.stars||5)}</div><p style="margin:10px 0;color:var(--ivory)">${r.text}</p><b>${r.name}</b></div>`).join('')}</div>`:'')+
       `<a class="btn solid" href="${MAPS}" target="_blank" rel="noopener">${t('r_btn')}</a>`;
   }else{
-    $('#rev').innerHTML=`<div class="stars" aria-hidden="true">★★★★★</div><h3>${t('r_title')}</h3><p>${t('r_text')}</p><a class="btn solid" href="${MAPS}" target="_blank" rel="noopener">${t('r_btn')}</a>`}}
+    $('#rev').innerHTML=`<div class="stars" aria-hidden="true">★★★★★</div><h3 class="foil">${t('r_title')}</h3><p>${t('r_text')}</p><a class="btn solid" href="${MAPS}" target="_blank" rel="noopener">${t('r_btn')}</a>`}}
 
 function renderMenu(){
   $('#menu').innerHTML=CATS.map(c=>`<div class="cat ${c.wide?'wide':''}"><h3>${lang==='ar'?c.ar:c.en}</h3>`+c.items.map(i=>
     `<div class="item"><div class="l"><span class="n">${lang==='ar'?i[1]:i[0]}</span>${i[4]?`<span class="tag">${t('pop')}</span>`:''}<span class="lead"></span><span class="p">${price(i[3])}</span></div>
      <div class="m"><span>${dur(i[2])}</span>${i[7]?`<span class="save">${t('save')} ${price(i[7]-i[3])}</span>`:''}</div>
-     ${(lang==='ar'?i[6]:i[5])?`<div class="m" style="margin-top:4px">${lang==='ar'?i[6]:i[5]}</div>`:''}</div>`).join('')+`</div>`).join('');
+     ${(lang==='ar'?i[6]:i[5])?`<div class="m">${lang==='ar'?i[6]:i[5]}</div>`:''}</div>`).join('')+`</div>`).join('');
   $('#cmenu').innerHTML=COFFEE.map(c=>`<div class="cat ${c.wide?'wide':''}"><h3>${lang==='ar'?c.ar:c.en}</h3>`+c.items.map(i=>
     `<div class="item"><div class="l"><span class="n">${lang==='ar'?i[1]:i[0]}</span></div></div>`).join('')+`</div>`).join('')}
+
+function renderSound(){const v=$('#vid');$('#snd').textContent=v.muted?t('snd_on'):t('snd_off')}
 
 function applyLang(){
   document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';
@@ -481,35 +485,35 @@ function applyLang(){
   $('#chips').innerHTML=t('chips').map(c=>`<span class="chip">${c}</span>`).join('');
   $('#foot').textContent=t('foot');
   $('#langBtn').textContent=lang==='ar'?'EN':'العربية';
-  renderStatus();renderHours();renderContact();renderReviews();renderMenu()}
+  renderStatus();renderHours();renderContact();renderReviews();renderMenu();renderSound()}
 
 function setLang(l){lang=l;try{localStorage.setItem('alf-lang',l)}catch(e){}applyLang()}
 $('#langBtn').onclick=()=>setLang(lang==='ar'?'en':'ar');
 
-/* routing between the three pages */
+/* three pages */
 let pending=null;
 function route(){const h=location.hash.slice(1);const p=['barber','coffee'].includes(h)?h:'home';
   document.querySelectorAll('.page').forEach(e=>e.classList.toggle('on',e.id==='p-'+p));
-  document.querySelectorAll('[data-nav]').forEach(a=>a.toggleAttribute('aria-current',a.dataset.nav===p)||0);
   document.querySelectorAll('[data-nav]').forEach(a=>a.dataset.nav===p?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
+  if(p==='home')playVid();else $('#vid').pause();
   if(pending){const id=pending;pending=null;setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'})},60)}else window.scrollTo(0,0)}
 window.addEventListener('hashchange',route);
 document.addEventListener('click',e=>{const a=e.target.closest('[data-scroll]');if(!a)return;e.preventDefault();pending=a.dataset.scroll;
   if(location.hash==='#home'||location.hash===''){route()}else location.hash='home'});
 
-/* gallery + lightbox */
-$('#gal').innerHTML=PHOTOS.map(p=>`<button type="button" data-src="media/${p}.jpg"><img src="media/${p}.jpg" alt="alf991" loading="lazy"></button>`).join('');
-$('#gal').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$('#lbImg').src=b.dataset.src;$('#lb').classList.add('on')});
+/* lightbox, used only by the photo sets on the Barber and Coffee pages */
+document.addEventListener('click',e=>{const b=e.target.closest('[data-lb]');if(!b)return;$('#lbImg').src=b.dataset.lb;$('#lb').classList.add('on')});
 $('#lb').onclick=()=>$('#lb').classList.remove('on');
 addEventListener('keydown',e=>{if(e.key==='Escape')$('#lb').classList.remove('on')});
 
-/* video */
-const v=$('#vid'),pb=$('#play');
-pb.onclick=()=>{pb.classList.add('hide');v.play().catch(()=>{})};
-v.addEventListener('pause',()=>{if(v.currentTime===0||v.ended)pb.classList.remove('hide')});
+/* video: starts by itself (muted, as browsers require), tap the picture to pause, button for sound */
+const v=$('#vid');
+function playVid(){const p=v.play();if(p&&p.catch)p.catch(()=>{})}
+$('#snd').onclick=()=>{v.muted=!v.muted;if(!v.muted)playVid();renderSound()};
+v.addEventListener('click',()=>{v.paused?playVid():v.pause()});
+if('IntersectionObserver' in window){new IntersectionObserver(es=>{es.forEach(en=>{if(!$('#p-home').classList.contains('on'))return;en.isIntersecting?playVid():v.pause()})},{threshold:.25}).observe(v)}
 
 applyLang();route();setInterval(renderStatus,60000);
 </script>
-
 </body>
 </html>
